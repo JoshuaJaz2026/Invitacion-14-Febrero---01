@@ -1,0 +1,430 @@
+/* Importamos fuentes bonitas de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Pacifico&display=swap');
+
+:root {
+    --primary-color: #ff4d6d;
+    --hover-color: #d63353;
+    --bg-gradient: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%);
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --ticket-bg: #fff0f3;     /* Fondo rosita muy claro */
+    --ticket-dark-pink: #ff8fa3;
+    --ticket-border: #ff4d6d; /* Borde más intenso */
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-gradient);
+    font-family: 'Nunito', sans-serif;
+    overflow-x: hidden;
+
+    /* --- CURSOR DE CORAZÓN --- */
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>💘</text></svg>") 16 0, auto;
+}
+
+/* Fondo con patrón de corazones */
+.bg-hearts {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 3.22l-.61-.6a5.5 5.5 0 0 0-7.78 7.77L10 18.78l8.39-8.4a5.5 5.5 0 0 0-7.78-7.77l-.61.61z' fill='%23ffffff' fill-opacity='0.3'/%3E%3C/svg%3E");
+    z-index: -1;
+    opacity: 0.6;
+}
+
+/* Tarjeta Principal */
+.card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    padding: 2.5rem;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 90%;
+    width: 500px;
+    position: relative;
+    transition: all 0.5s ease;
+    
+    /* --- ANIMACIÓN DE ENTRADA SUAVE --- */
+    animation: slideUpFade 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Tipografía General */
+h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 2.5rem;
+    margin: 10px 0;
+    
+    /* --- EFECTO DE TEXTO BRILLANTE --- */
+    background: linear-gradient(to right, var(--primary-color) 0%, #ffabc1 50%, var(--primary-color) 100%);
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: shineText 4s linear infinite;
+    filter: drop-shadow(2px 2px 4px rgba(255, 77, 109, 0.3));
+}
+
+.title-success {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle { color: #666; font-size: 1.1rem; margin-bottom: 5px; }
+.subtitle-success { color: #555; font-size: 1rem; margin-bottom: 1.5rem; }
+.question { font-size: 1.3rem; font-weight: 800; color: #333; margin-bottom: 2rem; }
+
+/* --- STICKER INTERACTIVO (SECRET MESSAGE) --- */
+.sticker { 
+    font-size: 3rem; 
+    animation: float 3s ease-in-out infinite; 
+    cursor: pointer; /* Manita al pasar por encima */
+    transition: transform 0.2s; /* Suavidad al clicar */
+}
+
+.sticker:active {
+    transform: scale(0.9); /* Efecto de "presionar" */
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Botones */
+.btn-container { display: flex; justify-content: center; gap: 15px; min-height: 60px; position: relative; }
+
+.btn { 
+    padding: 12px 30px; 
+    border: none; 
+    border-radius: 50px; 
+    font-size: 1rem; 
+    font-weight: 700; 
+    transition: all 0.3s ease; 
+    font-family: 'Nunito', sans-serif;
+    
+    /* CURSOR DE MANITO EN BOTONES */
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>👆</text></svg>") 16 0, pointer;
+}
+
+/* También aplicamos el cursor de manito a los enlaces */
+a {
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>👆</text></svg>") 16 0, pointer;
+}
+
+/* --- BOTÓN SÍ CON LATIDO --- */
+.btn-yes { 
+    background-color: var(--primary-color); 
+    color: white; 
+    box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4); 
+    animation: heartbeat 1.5s infinite; 
+}
+
+.btn-yes:hover { background-color: var(--hover-color); transform: scale(1.05); }
+.btn-no { background-color: #f1f1f1; color: #888; transition: all 0.1s ease; }
+
+/* Botón PDF */
+.btn-download {
+    background-color: #333;
+    color: white;
+    margin-top: 25px;
+    padding: 12px 25px;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.btn-download:hover {
+    background-color: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+/* =========================================
+   ESTILOS DE LA CUPONERA
+   ========================================= */
+
+#imprimirArea {
+    background: white; 
+    padding: 40px 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.cuponera-title {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.cuponera-title::after {
+    content: 'SAN VALENTÍN';
+    display: block;
+    font-family: 'Pacifico', cursive;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    text-transform: none;
+    margin-top: -5px;
+    text-shadow: 3px 3px 0px rgba(255, 77, 109, 0.1);
+}
+
+.cuponera-container {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+}
+
+.cut-line {
+    width: 100%;
+    border-top: 3px dashed var(--ticket-dark-pink);
+    position: relative;
+    margin: 5px 0;
+    opacity: 0.5;
+}
+
+.scissors-icon {
+    position: absolute;
+    top: -14px;
+    left: -10px;
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    background: white;
+    padding: 0 5px;
+}
+
+/* TICKET ESTILO STICKER */
+.ticket {
+    display: flex;
+    background-color: var(--ticket-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 480px;
+    border: 3px solid var(--ticket-dark-pink);
+    box-shadow: 0 8px 0 rgba(0,0,0,0.05), inset 0 0 0 4px white; 
+    position: relative;
+    height: 140px;
+    /* --- EFECTO FLOTANTE --- */
+    transition: all 0.3s ease;
+}
+
+/* --- TICKET HOVER (Se levanta al pasar el mouse) --- */
+.ticket:hover {
+    transform: translateY(-7px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(255, 77, 109, 0.2), inset 0 0 0 4px white;
+}
+
+.ticket-side {
+    background-color: var(--ticket-dark-pink);
+    color: white;
+    font-weight: 900;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    border-right: 3px dashed white;
+}
+
+.ticket-main {
+    flex: 1;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    position: relative;
+}
+
+.ticket::before, .ticket::after {
+    content: '';
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    background-color: white;
+    border-radius: 50%;
+    z-index: 2;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 3px solid var(--ticket-dark-pink);
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.ticket::before { left: -18px; border-left: none; }
+.ticket::after { right: -18px; border-right: none; }
+
+.ticket-content h3 {
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    margin: 0;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ticket-content h2 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin: 5px 0 8px 0;
+    line-height: 1.1;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 0px white;
+}
+
+.ticket-footer p {
+    font-size: 0.7rem;
+    color: #888;
+    margin: 2px 0;
+    font-weight: 700;
+    background: rgba(255,255,255,0.6);
+    display: inline-block;
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+
+.ticket-icon {
+    font-size: 3.5rem;
+    margin-left: 15px;
+    filter: drop-shadow(3px 3px 0px white);
+    transform: rotate(-5deg);
+}
+
+.animate-pop { animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+@keyframes popIn { 0% { opacity: 0; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
+
+.note { font-size: 0.9rem; color: #666; margin-top: 25px; font-style: italic; }
+
+@media (max-width: 480px) {
+    .card { padding: 1.5rem; width: 95%; }
+    h1 { font-size: 2rem; }
+    .ticket { height: auto; flex-direction: column; max-width: 100%; }
+    .ticket-side { writing-mode: horizontal-tb; width: 100%; padding: 8px 0; border-right: none; border-bottom: 3px dashed white; }
+    .ticket::before, .ticket::after { display: none; }
+    .ticket-main { padding: 15px; text-align: center; flex-direction: column-reverse; }
+    .ticket-icon { margin: 0 0 10px 0; font-size: 3rem; }
+    .ticket-content h2 { font-size: 1.3rem; }
+}
+
+/* EFECTO MÁQUINA DE ESCRIBIR */
+.typing-effect {
+    border-right: 3px solid var(--primary-color);
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 3s steps(30, end), blink .75s step-end infinite;
+    max-width: fit-content;
+    margin: 0 auto 20px auto;
+    font-weight: 700;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink {
+    from, to { border-color: transparent }
+    50% { border-color: var(--primary-color) }
+}
+
+/* ANIMACIÓN DE LATIDO DEL CORAZÓN */
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    10% { transform: scale(1.05); }
+    20% { transform: scale(1); }
+    30% { transform: scale(1.05); }
+    40% { transform: scale(1); }
+    100% { transform: scale(1); }
+}
+
+/* --- ESTILOS DE LA NOTA SECRETA (MODAL) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro transparente */
+    display: none; /* Oculto por defecto */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Por encima de todo */
+    backdrop-filter: blur(5px);
+}
+
+.modal-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 90%;
+    width: 350px;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    border: 3px solid var(--primary-color);
+    animation: popIn 0.4s ease;
+    position: relative;
+}
+
+.modal-card h2 {
+    font-family: 'Pacifico', cursive;
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.modal-card p {
+    font-family: 'Nunito', sans-serif;
+    color: #555;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.btn-cerrar {
+    margin-top: 20px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+.btn-cerrar:hover {
+    transform: scale(1.05);
+    background: var(--hover-color);
+}
+
+/* --- KEYFRAMES PARA EFECTOS NUEVOS --- */
+
+/* Animación de entrada de la tarjeta */
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Animación de brillo en el texto */
+@keyframes shineText {
+    to { background-position: 200% center; }
+}

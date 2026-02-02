@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para ti ❤️</title>
+    
+    <meta property="og:title" content="Tengo una pregunta para ti... 💌">
+    <meta property="og:description" content="Es algo muy especial, entra y descúbrelo ❤️">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#ff4d6d">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💌</text></svg>">
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="bg-hearts"></div>
+
+    <audio id="musica" loop>
+        <source src="audio/Turning Page.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="card" id="mainCard">
+        <div id="questionBlock">
+            <div class="sticker" onclick="mostrarNotaSecreta()">💌</div>
+            
+            <h1>Hola, mi Jazmin</h1>
+            
+            <p class="subtitle typing-effect">Tengo una pregunta muy importante...</p>
+            
+            <h3>¿Te gustaría ser mi San Valentín?</h3>
+            
+            <div class="btn-container">
+                <button class="btn btn-yes" onclick="aceptar()">¡Siii, obvio! 💖</button>
+                <button class="btn btn-no" id="btnNo" onmouseover="moverBoton()" ontouchstart="moverBoton()" onclick="moverBoton()">No 😢</button>
+            </div>
+        </div>
+
+        <div class="success-message" id="successBlock" style="display: none;">
+            <h1 class="animate-pop" style="margin-bottom: 5px;">¡Sabía que dirías que sí! 😍</h1>
+            
+            <div id="contador-box" style="margin: 15px 0; background: rgba(255,255,255,0.6); padding: 10px; border-radius: 15px; border: 2px dashed #ff4d6d;">
+                <p style="margin: 0; font-size: 0.9rem; color: #555; font-weight: bold;">Faltan para nuestra cita:</p>
+                <div id="cuenta-regresiva" style="font-size: 1.5rem; font-weight: 900; color: #ff4d6d; font-family: 'Nunito', sans-serif;">
+                    Calculando...
+                </div>
+                <p style="margin: 0; font-size: 0.8rem; color: #888;">(Lunes 16 de Febrero - 9:00 AM)</p>
+            </div>
+
+            <p style="margin-bottom: 20px;">Aquí tienes tus regalos:</p>
+            
+            <div id="visualArea">
+                <div class="cuponera-title">CUPONERA DE</div>
+                <div class="cuponera-container animate-pop">
+                    
+                    <div class="cut-line"><i class="fas fa-scissors scissors-icon"></i></div>
+                    <div class="ticket">
+                        <div class="ticket-side">CUPÓN</div>
+                        <div class="ticket-main">
+                            <div class="ticket-content">
+                                <h3>VÁLIDO POR:</h3>
+                                <h2>SALIR A LARCOMAR</h2>
+                                <div class="ticket-footer"><p>PARA: Mi amorcito ❤️</p> <p>NO. 0001</p></div>
+                            </div>
+                            <div class="ticket-icon">🛍️</div>
+                        </div>
+                    </div>
+
+                    <div class="cut-line"><i class="fas fa-scissors scissors-icon"></i></div>
+                    <div class="ticket">
+                        <div class="ticket-side">CUPÓN</div>
+                        <div class="ticket-main">
+                            <div class="ticket-content">
+                                <h3>VÁLIDO POR:</h3>
+                                <h2>UN ALMUERZO RICO</h2>
+                                <div class="ticket-footer"><p>PARA: Mi amorcito ❤️</p> <p>NO. 0002</p></div>
+                            </div>
+                            <div class="ticket-icon">🍽️</div>
+                        </div>
+                    </div>
+
+                    <div class="cut-line"><i class="fas fa-scissors scissors-icon"></i></div>
+                    <div class="ticket">
+                        <div class="ticket-side">CUPÓN</div>
+                        <div class="ticket-main">
+                            <div class="ticket-content">
+                                <h3>VÁLIDO POR:</h3>
+                                <h2>UNA SORPRESA... 🤫</h2>
+                                <div class="ticket-footer"><p>PARA: Mi amorcito ❤️</p> <p>NO. 0003</p></div>
+                            </div>
+                            <div class="ticket-icon">🎁</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 25px;">
+                <a href="print.html" target="_blank" class="btn btn-download" style="text-decoration: none; justify-content: center;">
+                    <i class="fas fa-print"></i> Imprimir Cupones HD
+                </a>
+
+                <a href="https://m.me/joshua.abarca.939888" 
+                   target="_blank" 
+                   class="btn" 
+                   style="background-color: #0084FF; color: white; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 4px 10px rgba(0, 132, 255, 0.3);">
+                   <i class="fab fa-facebook-messenger"></i> Confirmar por Messenger
+                </a>
+            </div>
+            
+            <p class="note">Haz clic para descargar o confirmar 😉</p>
+        </div>
+    </div>
+
+    <div id="modalSecreto" class="modal-overlay" onclick="cerrarNota()">
+        <div class="modal-card" onclick="event.stopPropagation()">
+            <h2>✨ Mensajito Secreto ✨</h2>
+            <p>Gracias por hacer mi mundo más bonito y por ser la mejor coincidencia de mi vida. 🌎❤️</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">(Te quiero muchísimo)</p>
+            <button class="btn-cerrar" onclick="cerrarNota()">Cerrar</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        window.onload = function() {
+            const music = document.getElementById('musica');
+            music.volume = 0.5;
+            document.body.addEventListener('click', () => { if (music.paused) music.play(); }, { once: true });
+        };
+
+        // --- FUNCIONES PARA LA NOTA SECRETA ---
+        function mostrarNotaSecreta() {
+            document.getElementById('modalSecreto').style.display = 'flex';
+        }
+
+        function cerrarNota() {
+            document.getElementById('modalSecreto').style.display = 'none';
+        }
+
+        function moverBoton() {
+            const btnNo = document.getElementById('btnNo');
+            const card = document.getElementById('mainCard');
+            const music = document.getElementById('musica');
+            if (music.paused) music.play().catch(e => console.log(e));
+            
+            const cardRect = card.getBoundingClientRect();
+            const btnRect = btnNo.getBoundingClientRect();
+            if (btnNo.style.position !== 'absolute') btnNo.style.position = 'absolute';
+            
+            const maxX = Math.max(0, cardRect.width - btnRect.width - 30);
+            const maxY = Math.max(0, cardRect.height - btnRect.height - 30);
+            
+            btnNo.style.left = Math.random() * maxX + "px";
+            btnNo.style.top = Math.random() * maxY + "px";
+        }
+
+        function iniciarContador() {
+            const fechaCita = new Date(2026, 1, 16, 9, 0, 0).getTime();
+
+            const x = setInterval(function() {
+                const ahora = new Date().getTime();
+                const distancia = fechaCita - ahora;
+
+                const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+                document.getElementById("cuenta-regresiva").innerHTML = 
+                    dias + "d " + horas + "h " + minutos + "m " + segundos + "s ";
+
+                if (distancia < 0) {
+                    clearInterval(x);
+                    document.getElementById("cuenta-regresiva").innerHTML = "¡HOY ES EL DÍA! 💖";
+                }
+            }, 1000);
+        }
+
+        function aceptar() {
+            document.getElementById('questionBlock').style.display = 'none';
+            document.getElementById('successBlock').style.display = 'block';
+            document.getElementById('mainCard').style.maxWidth = '600px'; 
+            
+            const music = document.getElementById('musica');
+            if (music.paused) music.play();
+            
+            lanzarConfeti();
+            iniciarContador();
+        }
+
+        function lanzarConfeti() {
+            var duration = 3 * 1000;
+            var animationEnd = Date.now() + duration;
+            var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+            var random = function(min, max) { return Math.random() * (max - min) + min; }
+            var interval = setInterval(function() {
+                var timeLeft = animationEnd - Date.now();
+                if (timeLeft <= 0) return clearInterval(interval);
+                var particleCount = 50 * (timeLeft / duration);
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: random(0.1, 0.3), y: Math.random() - 0.2 }, colors: ['#ff4d6d', '#ff8fa3', '#ffffff'] }));
+                confetti(Object.assign({}, defaults, { particleCount, origin: { x: random(0.7, 0.9), y: Math.random() - 0.2 }, colors: ['#ff4d6d', '#ff8fa3', '#ffffff'] }));
+            }, 250);
+        }
+
+        let tituloOriginal = document.title;
+        window.onblur = function() { document.title = "¡No te vayas! 😭💔"; };
+        window.onfocus = function() { document.title = tituloOriginal; };
+    </script>
+</body>
+</html>
