@@ -21,7 +21,7 @@
         <div class="login-box">
             <div class="lock-icon">🔒</div>
             <h2>Solo para Jazmin</h2>
-            <p>Escribe la fecha de nuestra cita (dd/mm) o la clave secreta:</p>
+            <p>Escribe la contraseña...te doy una pista, la contraseña es de un dispositivo que te gusta revisar</p>
             
             <input type="password" id="passwordInput" placeholder="Contraseña..." onkeypress="checkEnter(event)">
             
@@ -172,7 +172,7 @@
             const music = document.getElementById('musica');
             
             // CONTRASEÑAS ACEPTADAS
-            const clavesValidas = ["1602", "jazmin", "amor", "san valentin"];
+            const clavesValidas = ["1602", "jazmin", "amor", "san valentin", "170123"];
             
             if (clavesValidas.includes(input.value.toLowerCase().trim())) {
                 loginScreen.style.opacity = '0';
