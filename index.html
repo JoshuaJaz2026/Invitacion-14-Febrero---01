@@ -21,7 +21,7 @@
         <div class="login-box">
             <div class="lock-icon">🔒</div>
             <h2>Solo para Jazmin</h2>
-            <p>Escribe la contraseña...te doy una pista, la contraseña es de un dispositivo que te gusta revisar</p>
+            <p>Escribe la contraseña... te doy una pista, la contraseña es de un dispositivo que te gusta revisar 📱👀</p>
             
             <input type="password" id="passwordInput" placeholder="Contraseña..." onkeypress="checkEnter(event)">
             
@@ -57,7 +57,7 @@
             
             <div class="polaroid-container">
                 <div class="polaroid">
-                    <img src="nosotros.jpg" alt="Nosotros" class="photo">
+                    <img src="img/Nosotros.jpg" alt="Nosotros" class="photo">
                     <p class="caption">Tú y yo ❤️</p>
                 </div>
             </div>
@@ -171,7 +171,7 @@
             const loginScreen = document.getElementById('loginScreen');
             const music = document.getElementById('musica');
             
-            // CONTRASEÑAS ACEPTADAS
+            // CONTRASEÑAS ACEPTADAS (Agregué la del dispositivo móvil por si acaso)
             const clavesValidas = ["1602", "jazmin", "amor", "san valentin", "170123"];
             
             if (clavesValidas.includes(input.value.toLowerCase().trim())) {
