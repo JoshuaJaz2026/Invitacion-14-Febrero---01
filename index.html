@@ -17,6 +17,19 @@
 </head>
 <body>
 
+    <div id="loginScreen" class="login-overlay">
+        <div class="login-box">
+            <div class="lock-icon">🔒</div>
+            <h2>Solo para Jazmin</h2>
+            <p>Escribe la fecha de nuestra cita (dd/mm) o la clave secreta:</p>
+            
+            <input type="password" id="passwordInput" placeholder="Contraseña..." onkeypress="checkEnter(event)">
+            
+            <button class="btn btn-yes" onclick="entrar()">Ver Sorpresa 💖</button>
+            <p id="errorMsg" class="error-msg">Ups... contraseña incorrecta 🙈</p>
+        </div>
+    </div>
+
     <div class="bg-hearts"></div>
 
     <audio id="musica" loop>
@@ -35,12 +48,19 @@
             
             <div class="btn-container">
                 <button class="btn btn-yes" onclick="aceptar()">¡Siii, obvio! 💖</button>
-                <button class="btn btn-no" id="btnNo" onmouseover="moverBoton()" ontouchstart="moverBoton()" onclick="moverBoton()">No 😢</button>
+                <button class="btn btn-no" id="btnNo" onmouseover="moverBoton()" ontouchstart="moverBoton(event)" onclick="moverBoton()">No 😢</button>
             </div>
         </div>
 
         <div class="success-message" id="successBlock" style="display: none;">
             <h1 class="animate-pop" style="margin-bottom: 5px;">¡Sabía que dirías que sí! 😍</h1>
+            
+            <div class="polaroid-container">
+                <div class="polaroid">
+                    <img src="nosotros.jpg" alt="Nosotros" class="photo">
+                    <p class="caption">Tú y yo ❤️</p>
+                </div>
+            </div>
             
             <div id="contador-box" style="margin: 15px 0; background: rgba(255,255,255,0.6); padding: 10px; border-radius: 15px; border: 2px dashed #ff4d6d;">
                 <p style="margin: 0; font-size: 0.9rem; color: #555; font-weight: bold;">Faltan para nuestra cita:</p>
@@ -127,13 +147,51 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <script>
+        // --- FRASES PARA EL BOTÓN "NO" ---
+        const frases = [
+            "¡Ni lo intentes! 🏃‍♂️",
+            "¿En serio? 🥺",
+            "¡Me romperás el corazón! 💔",
+            "¡No te dejo escapar! 😠",
+            "¡Anda, di que sí! 🌹",
+            "¡Soy tu mejor opción! 😎",
+            "¡Mira que cocino rico! 🍳",
+            "¡Te quiero mucho! ❤️"
+        ];
+
         window.onload = function() {
             const music = document.getElementById('musica');
             music.volume = 0.5;
-            document.body.addEventListener('click', () => { if (music.paused) music.play(); }, { once: true });
         };
 
-        // --- FUNCIONES PARA LA NOTA SECRETA ---
+        // --- LÓGICA DE CONTRASEÑA ---
+        function entrar() {
+            const input = document.getElementById('passwordInput');
+            const errorMsg = document.getElementById('errorMsg');
+            const loginScreen = document.getElementById('loginScreen');
+            const music = document.getElementById('musica');
+            
+            // CONTRASEÑAS ACEPTADAS
+            const clavesValidas = ["1602", "jazmin", "amor", "san valentin"];
+            
+            if (clavesValidas.includes(input.value.toLowerCase().trim())) {
+                loginScreen.style.opacity = '0';
+                setTimeout(() => { loginScreen.style.display = 'none'; }, 500);
+                // Iniciar música al entrar
+                music.play().catch(e => console.log("Error audio: " + e));
+            } else {
+                errorMsg.style.display = 'block';
+                input.parentElement.classList.add('shake');
+                setTimeout(() => input.parentElement.classList.remove('shake'), 500);
+                input.value = "";
+            }
+        }
+
+        function checkEnter(event) {
+            if (event.key === "Enter") entrar();
+        }
+
+        // --- NOTA SECRETA ---
         function mostrarNotaSecreta() {
             document.getElementById('modalSecreto').style.display = 'flex';
         }
@@ -142,12 +200,25 @@
             document.getElementById('modalSecreto').style.display = 'none';
         }
 
-        function moverBoton() {
+        // --- MOVER BOTÓN CON FRASES DIVERTIDAS ---
+        function moverBoton(e) {
+            // Evita clicks fantasma en celular
+            if (e && e.type === 'touchstart') {
+                e.preventDefault();
+            }
+
             const btnNo = document.getElementById('btnNo');
             const card = document.getElementById('mainCard');
+            
+            // Intentar reproducir música si no suena
             const music = document.getElementById('musica');
             if (music.paused) music.play().catch(e => console.log(e));
             
+            // Cambiar texto aleatorio
+            const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
+            btnNo.innerText = fraseAleatoria;
+            
+            // Calcular movimiento
             const cardRect = card.getBoundingClientRect();
             const btnRect = btnNo.getBoundingClientRect();
             if (btnNo.style.position !== 'absolute') btnNo.style.position = 'absolute';
