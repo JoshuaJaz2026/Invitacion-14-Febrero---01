@@ -410,26 +410,7 @@ a {
     background: var(--hover-color);
 }
 
-/* --- KEYFRAMES PARA EFECTOS NUEVOS --- */
-
-/* Animación de entrada de la tarjeta */
-@keyframes slideUpFade {
-    from {
-        opacity: 0;
-        transform: translateY(30px) scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-/* Animación de brillo en el texto */
-@keyframes shineText {
-    to { background-position: 200% center; }
-}
-
-/* --- PANTALLA DE LOGIN --- */
+/* --- ESTILOS DE LA PANTALLA DE LOGIN --- */
 .login-overlay {
     position: fixed;
     top: 0; left: 0;
@@ -491,4 +472,59 @@ a {
     0%, 100% { transform: translateX(0); }
     25% { transform: translateX(-10px); }
     75% { transform: translateX(10px); }
+}
+
+/* --- ESTILO POLAROID (AQUÍ ESTÁ LA CORRECCIÓN) --- */
+.polaroid-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.polaroid {
+    background: white;
+    padding: 10px 10px 25px 10px; /* Espacio extra abajo para el texto */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transform: rotate(-3deg); /* Inclinación coqueta */
+    transition: transform 0.3s ease;
+    width: 200px; /* Tamaño controlado */
+    max-width: 100%; /* Para que no se salga en pantallas muy pequeñas */
+}
+
+.polaroid:hover {
+    transform: rotate(0deg) scale(1.05); /* Se endereza al pasar el mouse */
+    z-index: 10;
+}
+
+.photo {
+    width: 100%; /* La foto ocupa el 100% del ancho del polaroid */
+    height: auto;
+    display: block;
+    border: 1px solid #eee;
+}
+
+.caption {
+    margin: 10px 0 0 0;
+    font-family: 'Pacifico', cursive; /* Tu fuente bonita */
+    color: #555;
+    font-size: 1.2rem;
+}
+
+/* --- KEYFRAMES PARA EFECTOS NUEVOS --- */
+
+/* Animación de entrada de la tarjeta */
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Animación de brillo en el texto */
+@keyframes shineText {
+    to { background-position: 200% center; }
 }
